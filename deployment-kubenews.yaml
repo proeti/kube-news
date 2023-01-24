@@ -30,7 +30,6 @@ spec:
             value: "kubenews"
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:

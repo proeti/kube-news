@@ -11,15 +11,16 @@ pipeline {
         stage('Push image to dockerhub') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerehub')
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerehub') {
                         dockerapp.push('latest')
                         dockerapp.push("${env.BUILD_ID}")
+                    }
                 }
             }
         }
         stage('Deploy app to kubernetes') {
             steps {
-                withKubeconfig ([credentialsId: kubeconfig]) {
+                withKubeConfig ([credentialsId: kubeconfig]) {
                     sh 'kubectl apply -f ./deployment-kubenews.yaml'
                 }
             }

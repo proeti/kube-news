@@ -60,10 +60,6 @@ spec:
       containers:
       - name: web
         image: proeti/kubenews:{{TAG}}
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 8080
         env:

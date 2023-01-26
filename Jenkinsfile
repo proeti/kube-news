@@ -19,8 +19,8 @@ pipeline {
         }
         stage('Deploy app to kubernetes') {
             steps {
-                withKubeconfig () {
-
+                withKubeconfig ([credentialsId: kubeconfig]) {
+                    sh 'kubectl apply -f ./deployment-kubenews.yaml'
                 }
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerehub')

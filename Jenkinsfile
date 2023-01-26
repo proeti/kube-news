@@ -12,8 +12,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerehub')
-                    dockerapp.push('latest')
-                    dockerapp.push("${env.BUILD_ID}")
+                        dockerapp.push('latest')
+                        dockerapp.push("${env.BUILD_ID}")
                 }
             }
         }
@@ -21,11 +21,6 @@ pipeline {
             steps {
                 withKubeconfig ([credentialsId: kubeconfig]) {
                     sh 'kubectl apply -f ./deployment-kubenews.yaml'
-                }
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerehub')
-                    dockerapp.push('latest')
-                    dockerapp.push("${env.BUILD_ID}")
                 }
             }
         }

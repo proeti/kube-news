@@ -17,5 +17,17 @@ pipeline {
                 }
             }
         }
+        stage('Deploy app to kubernetes') {
+            steps {
+                withKubeconfig () {
+
+                }
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerehub')
+                    dockerapp.push('latest')
+                    dockerapp.push("${env.BUILD_ID}")
+                }
+            }
+        }
     }
 }

@@ -59,7 +59,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: proeti/kubenews:v2
+        image: proeti/kubenews:{{TAG}}
         resources:
           limits:
             memory: "128Mi"
